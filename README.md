@@ -22,10 +22,18 @@ This fork of the Android-nRF-UART App has this modifikations:
 
 ## What did I do?
 
+### the arduino code
+
 I write a small Terminal firmware for the Arduino. Serial chars are printed
 to the SSD1306 OLED Display (max. 168, then refresh the display).
 
 ![a small oLed Terminal code](img/01_simpleTerminal.png)
+
+### Circuit
+
+![a small oLed Terminal circuit with bluetooth](Arduino_firmware/circuit.png)
+
+### Android App (thanks to Nordic Semicoductor to make it Open Source!)
 
 I change the maxLength of the sendText object in res/layout/main.xml (Android App) from
 20 to 168.
