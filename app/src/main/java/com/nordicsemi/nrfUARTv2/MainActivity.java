@@ -76,6 +76,8 @@ public class MainActivity extends Activity implements RadioGroup.OnCheckedChange
     private static final int UART_PROFILE_DISCONNECTED = 21;
     private static final int STATE_OFF = 10;
 
+    private NotificationReceiver nReceiver;
+
     TextView mRemoteRssiVal;
     RadioGroup mRg;
     private int mState = UART_PROFILE_DISCONNECTED;
@@ -105,7 +107,10 @@ public class MainActivity extends Activity implements RadioGroup.OnCheckedChange
         edtMessage = (EditText) findViewById(R.id.sendText);
         service_init();
 
-     
+        nReceiver = new NotificationReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("heuteTollesWetter.NOTIFICATION");
+        registerReceiver(nReceiver, filter);
        
         // Handle Disconnect & Connect button
         btnConnectDisconnect.setOnClickListener(new View.OnClickListener() {
@@ -406,4 +411,41 @@ public class MainActivity extends Activity implements RadioGroup.OnCheckedChange
             .show();
         }
     }
+
+    class NotificationReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+
+            if (action.equals("heuteTollesWetter.NOTIFICATION")) {
+                String msg = intent.getStringExtra("MSG");
+                byte[] value = new byte[0];
+                try {
+                    value = msg.getBytes("UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                mService.writeRXCharacteristic(value);
+            }
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

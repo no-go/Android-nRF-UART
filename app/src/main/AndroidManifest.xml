@@ -23,12 +23,12 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nordicsemi.nrfUARTv2"
-    android:versionCode="43"
+    android:versionCode="44"
     android:versionName="2.0" >
 
     <uses-sdk
-        android:minSdkVersion="18"
-        android:targetSdkVersion="18" />
+        android:minSdkVersion="19"
+        android:targetSdkVersion="19" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
@@ -49,6 +49,15 @@
         </activity>
         <activity android:name=".DeviceListActivity" android:label="@string/app_name" android:theme="@android:style/Theme.Dialog"/>
         <service android:enabled="true" android:name=".UartService" />
+
+        <service android:name="com.nordicsemi.nrfUARTv2.NotificationService"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

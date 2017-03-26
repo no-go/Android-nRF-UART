@@ -71,16 +71,20 @@ public class UartService extends Service {
             "com.nordicsemi.nrfUART.EXTRA_DATA";
     public final static String DEVICE_DOES_NOT_SUPPORT_UART =
             "com.nordicsemi.nrfUART.DEVICE_DOES_NOT_SUPPORT_UART";
-    
+
     public static final UUID TX_POWER_UUID = UUID.fromString("00001804-0000-1000-8000-00805f9b34fb");
     public static final UUID TX_POWER_LEVEL_UUID = UUID.fromString("00002a07-0000-1000-8000-00805f9b34fb");
-    public static final UUID CCCD = UUID.fromString("00002902-0000-1000-8000-00805f9b34fb");
     public static final UUID FIRMWARE_REVISON_UUID = UUID.fromString("00002a26-0000-1000-8000-00805f9b34fb");
     public static final UUID DIS_UUID = UUID.fromString("0000180a-0000-1000-8000-00805f9b34fb");
-    public static final UUID RX_SERVICE_UUID = UUID.fromString("6e400001-b5a3-f393-e0a9-e50e24dcca9e");
-    public static final UUID RX_CHAR_UUID = UUID.fromString("6e400002-b5a3-f393-e0a9-e50e24dcca9e");
-    public static final UUID TX_CHAR_UUID = UUID.fromString("6e400003-b5a3-f393-e0a9-e50e24dcca9e");
-    
+
+    //public static final UUID CCCD = UUID.fromString("00002902-0000-1000-8000-00805f9b34fb");
+    public   static final UUID CCCD = UUID.fromString("00002902-0000-1000-8000-00805f9b34fb");
+    //public static final UUID RX_SERVICE_UUID = UUID.fromString("6e400001-b5a3-f393-e0a9-e50e24dcca9e");
+    public   static final UUID RX_SERVICE_UUID = UUID.fromString("0000ffe0-0000-1000-8000-00805f9b34fb");
+    //public static final UUID RX_CHAR_UUID = UUID.fromString("6e400002-b5a3-f393-e0a9-e50e24dcca9e");
+    public   static final UUID RX_CHAR_UUID = UUID.fromString("0000ffe1-0000-1000-8000-00805f9b34fb");
+    //public static final UUID TX_CHAR_UUID = UUID.fromString("6e400003-b5a3-f393-e0a9-e50e24dcca9e");
+    public   static final UUID TX_CHAR_UUID = UUID.fromString("0000ffe1-0000-1000-8000-00805f9b34fb");
    
     // Implements callback methods for GATT events that the app cares about.  For example,
     // connection change and services discovered.
@@ -326,27 +330,33 @@ public class UartService extends Service {
     	
     }
     
-    public void writeRXCharacteristic(byte[] value)
-    {
-    
-    	
-    	BluetoothGattService RxService = mBluetoothGatt.getService(RX_SERVICE_UUID);
-    	showMessage("mBluetoothGatt null"+ mBluetoothGatt);
-    	if (RxService == null) {
-            showMessage("Rx service not found!");
-            broadcastUpdate(DEVICE_DOES_NOT_SUPPORT_UART);
-            return;
+    public void writeRXCharacteristic(byte[] value) {
+        int BYTE_LIMIT = 20;
+        int SPLIT_MS   = 60;
+        byte[] outputBytes;
+
+        int packs = (int) Math.ceil( (float) value.length / (float) BYTE_LIMIT );
+        int finish = BYTE_LIMIT;
+        int offset;
+        for (int i=0; i<packs; i++) {
+
+            offset = i * BYTE_LIMIT;
+            if ((offset + BYTE_LIMIT) >= value.length) {
+                finish = value.length - offset;
+            }
+            outputBytes = new byte[finish];
+            System.arraycopy(value, offset, outputBytes, 0, finish);
+
+            BluetoothGattService RxService = mBluetoothGatt.getService(RX_SERVICE_UUID);
+            BluetoothGattCharacteristic RxChar = RxService.getCharacteristic(RX_CHAR_UUID);
+            RxChar.setValue(outputBytes);
+            mBluetoothGatt.writeCharacteristic(RxChar);
+            try {
+                Thread.sleep(SPLIT_MS);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-    	BluetoothGattCharacteristic RxChar = RxService.getCharacteristic(RX_CHAR_UUID);
-        if (RxChar == null) {
-            showMessage("Rx charateristic not found!");
-            broadcastUpdate(DEVICE_DOES_NOT_SUPPORT_UART);
-            return;
-        }
-        RxChar.setValue(value);
-    	boolean status = mBluetoothGatt.writeCharacteristic(RxChar);
-    	
-        Log.d(TAG, "write TXchar - status=" + status);  
     }
     
     private void showMessage(String msg) {
