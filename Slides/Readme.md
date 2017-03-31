@@ -221,6 +221,8 @@ SSD1331 nicht viel anders als SSD1306
 
 ## Quellen
 
+![](img/qrcode.png)
+
  -  App und Firmware: [github.com/no-go/UART-Smartwatch/tree/gplay](https://github.com/no-go/UART-Smartwatch/tree/gplay)
  -  mini Beispiel: [no-go.github.io/Android-nRF-UART](https://no-go.github.io/Android-nRF-UART)
  -  Artikel vibora.de: [vibora.de/2016/04/do-it-yourself-smartwatch.html](http://vibora.de/2016/04/do-it-yourself-smartwatch.html)
