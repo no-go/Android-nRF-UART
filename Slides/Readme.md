@@ -2,7 +2,7 @@
 
 ## UART Smartwatch
 
-Die Idee
+![](img/intro.eps)
 
 ## UART Smartwatch
 
@@ -63,6 +63,7 @@ Low Cost vs teuer
  -  Display mit 128x64 statt 64x48 ist billiger (braucht mehr RAM)
  -  Programmieren nur mit Zusatz Hardware
  -  bis zu 60 Tage Lieferzeit
+ -  kleiner
  -  Bluefruit = 3mA , HM10 Modul = 10mA
 
 Fazit: Kompromisse finden. Dumm, wenn Display aus und Arduino im Sleep Modus
@@ -85,9 +86,7 @@ Akku Laufzeit
 5)  Mit 3 EUR mehr: besseres Bluetooth Modul?
 
 zu 4: Mit UART Arduino aufwachen lassen - Der Sleep Modus bringt nicht
-viel
-
-[github.com/no-go/Bluetooth-Smartwatch](https://github.com/no-go/Bluetooth-Smartwatch)
+viel: [github.com/no-go/Bluetooth-Smartwatch](https://github.com/no-go/Bluetooth-Smartwatch)
 
 
 
@@ -117,7 +116,7 @@ Mini Beispiel
 
 ## Mini Beispiel - Android App (2)
 
-Download der UART Terminal App von github
+Download der UART Terminal App Code von
 
 [github.com/NordicSemiconductor/Android-nRF-UART](https://github.com/NordicSemiconductor/Android-nRF-UART)
 
@@ -125,9 +124,62 @@ und öffnen in Android Studio :-D
 
 ![](img/mini_03.png)
 
+
+
+
 ## Mini Beispiel - Android App (3)
 
+Ja, ich bin nicht der Benutzer **hubu** - ändere das für mich
 
+![](img/mini_04.png)
+
+## Mini Beispiel - Android App (3.1)
+
+.. und es erzeugt, importiert oder was auch immer ein paar Minuten
+
+![](img/mini_05.png)
+
+## Mini Beispiel - Android App (3.2)
+
+Oje, Gradle was einem beim Kompilieren hilft, kommt nicht klar!
+
+![](img/mini_06.png)
+
+## Mini Beispiel - Android App (3.3)
+
+Ach, lösche ich den *gradle* Ordner einfach. Android Studio macht den eh neu, wenn er fehlt.
+
+![](img/mini_07.png)
+
+## Mini Beispiel - Android App (3.4)
+
+Mist. Die App ist für 4.3 (= Android Plattform 18) gemacht...
+
+![](img/mini_08.png)
+
+## Mini Beispiel - Android App (3.5)
+
+Tools für die Plattform einfach nachinstallieren :-D
+
+![](img/mini_09.png)
+
+## Mini Beispiel - Android App (3.6)
+
+Build Tools 23.0.0 !? Ok, schein wichtig zu sein ... auch hier kann Android Studio nachinstallieren.
+
+![](img/mini_10.png)
+
+## Mini Beispiel - Android App (3.7)
+
+Gradle Update? Gradle plugin Update? ... Ja, von mir aus... jetzt muss es aber gut sein.
+
+![](img/mini_11.png)
+
+## Mini Beispiel - Android App (3.8)
+
+Ein Anfänger sollte man sich wohl erstmal ein Tutorial oder Video anschauen!
+
+![](img/mini_12.png)
 
 ## Mini Beispiel - Android App (4)
 
@@ -141,7 +193,7 @@ und öffnen in Android Studio :-D
 
 ## Mini Beispiel - Android App (5)
 
-Von mir detailiert beschrieben mit Screenshots auf: [no-go.github.io/Android-nRF-UART](https://no-go.github.io/Android-nRF-UART)
+Von mir detailliert beschrieben mit Screenshots auf: [no-go.github.io/Android-nRF-UART](https://no-go.github.io/Android-nRF-UART)
 
 
 # Farbdisplay
@@ -169,12 +221,16 @@ SSD1331 nicht viel anders als SSD1306
 
 ## Quellen
 
- -  App und Firmware [github.com/no-go/UART-Smartwatch/tree/gplay](https://github.com/no-go/UART-Smartwatch/tree/gplay)
- -  mini Beispiel [no-go.github.io/Android-nRF-UART](https://no-go.github.io/Android-nRF-UART)
- -  Artikel vibora.de [vibora.de/2016/04/do-it-yourself-smartwatch.html](http://vibora.de/2016/04/do-it-yourself-smartwatch.html)
- -  Farbdisplay Arduino [github.com/no-go/UART-Smartwatch/tree/ssd1331](https://github.com/no-go/UART-Smartwatch/tree/ssd1331)
- -  oLED Bluetooth Map [no-go.github.io/oLEDBluetoothMap](https://no-go.github.io/oLEDBluetoothMap)
+ -  App und Firmware: [github.com/no-go/UART-Smartwatch/tree/gplay](https://github.com/no-go/UART-Smartwatch/tree/gplay)
+ -  mini Beispiel: [no-go.github.io/Android-nRF-UART](https://no-go.github.io/Android-nRF-UART)
+ -  Artikel vibora.de: [vibora.de/2016/04/do-it-yourself-smartwatch.html](http://vibora.de/2016/04/do-it-yourself-smartwatch.html)
+ -  Farbdisplay Arduino: [github.com/no-go/UART-Smartwatch/tree/ssd1331](https://github.com/no-go/UART-Smartwatch/tree/ssd1331)
+ -  oLED Bluetooth Map: [no-go.github.io/oLEDBluetoothMap](https://no-go.github.io/oLEDBluetoothMap)
 
 ## Danke
 
+Danke für Ihre Aufmerksamkeit!
+
 Fragen?
+
+![](img/ende.jpg)
