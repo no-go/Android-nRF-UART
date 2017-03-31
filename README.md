@@ -16,7 +16,12 @@ This fork of the Android-nRF-UART App has this modifikations:
 - gets and sends android status bar notifications
 - works with a non nRF Module like HM-10
 
+Get a PDF (german) about my (UART Smartwatch Project)[https://github.com/no-go/UART-Smartwatch/tree/gplay] from the `Slides/` folder:
+<a href="https://github.com/no-go/Android-nRF-UART/raw/master/Slides/Slides.pdf" target="_blank">
+<img src="https://raw.githubusercontent.com/no-go/Android-nRF-UART/master/img//Adobe_PDF_file_icon.png" alt="Get Slides" /></a>
+
 ## Note
+
 - Android 4.4 or later is required.
 - Android Studio supported 
 
